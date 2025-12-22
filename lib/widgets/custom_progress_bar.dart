@@ -3,20 +3,39 @@ import 'package:flutter/material.dart';
 class CustomProgressBar extends StatelessWidget {
   final int currentPoints;
   final List<int> milestones;
+  final List<String>? labels;
   final Color progressColor;
-  final Color? trackColor;
+  final Color trackColor;
   final Widget? completedIcon;
   final Widget? pendingIcon;
+  final double iconSize;
+  final double lineHeight;
+  final Duration animationDuration;
+  final Curve animationCurve;
+  final TextStyle? labelStyle;
 
   const CustomProgressBar({
     super.key,
     required this.currentPoints,
     required this.milestones,
+    this.labels,
     this.progressColor = Colors.blue,
     this.trackColor = const Color(0xFFE0E0E0),
     this.completedIcon,
     this.pendingIcon,
-  });
+    this.iconSize = 24.0,
+    this.lineHeight = 6.0,
+    this.animationDuration = const Duration(milliseconds: 500),
+    this.animationCurve = Curves.easeInOut,
+    this.labelStyle,
+  }) : assert(labels == null || labels.length == milestones.length,
+            'Labels length must match milestones length');
+
+  double _calculateSegmentProgress(int start, int end) {
+    if (currentPoints >= end) return 1.0;
+    if (currentPoints <= start) return 0.0;
+    return (currentPoints - start) / (end - start);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -24,76 +43,89 @@ class CustomProgressBar extends StatelessWidget {
       return const SizedBox.shrink();
     }
 
-    const double iconSize = 24.0;
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Row(
+          children: List.generate(
+            milestones.length + (milestones.length - 1),
+            (index) {
+              if (index % 2 == 0) {
+                final milestoneIndex = index ~/ 2;
+                final isCompleted = currentPoints >= milestones[milestoneIndex];
+                return _buildIcon(isCompleted);
+              } else {
+                final segmentIndex = index ~/ 2;
+                final progress = _calculateSegmentProgress(
+                  milestones[segmentIndex],
+                  milestones[segmentIndex + 1],
+                );
+                return _buildLineSegment(progress);
+              }
+            },
+          ),
+        ),
+        if (labels != null) ...[
+          const SizedBox(height: 8),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: labels!.map((label) => SizedBox(
+                  width: iconSize,
+                  child: Text(
+                    label,
+                    textAlign: TextAlign.center,
+                    style: labelStyle ??
+                        const TextStyle(fontSize: 12, fontWeight: FontWeight.w500),
+                  ),
+                )).toList(),
+          ),
+        ],
+      ],
+    );
+  }
 
+  Widget _buildIcon(bool isCompleted) {
     return SizedBox(
+      width: iconSize,
       height: iconSize,
-      child: LayoutBuilder(
-        builder: (context, constraints) {
-          return Row(
-            children: List.generate(
-              milestones.length + (milestones.length - 1),
-              (index) {
-                if (index % 2 == 0) {
-                  int milestoneIndex = index ~/ 2;
-                  bool isCompleted =
-                      currentPoints >= milestones[milestoneIndex];
+      child: isCompleted
+          ? (completedIcon ??
+              Icon(Icons.check_circle, color: Colors.green, size: iconSize))
+          : (pendingIcon ??
+              Icon(Icons.circle_outlined, color: trackColor, size: iconSize)),
+    );
+  }
 
-                  return isCompleted
-                      ? (completedIcon ??
-                            const Icon(
-                              Icons.check_circle,
-                              color: Colors.green,
-                              size: iconSize,
-                            ))
-                      : (pendingIcon ??
-                            Icon(
-                              Icons.circle_outlined,
-                              color: trackColor,
-                              size: iconSize,
-                            ));
-                } else {
-                  int segmentIndex = index ~/ 2;
-                  int startValue = milestones[segmentIndex];
-                  int endValue = milestones[segmentIndex + 1];
-                  double segmentProgress = 0.0;
-                  if (currentPoints >= endValue) {
-                    segmentProgress = 1.0;
-                  } else if (currentPoints > startValue) {
-                    segmentProgress =
-                        (currentPoints - startValue) / (endValue - startValue);
-                  }
-
-                  return Expanded(
-                    child: Stack(
-                      children: [
-                        Container(
-                          margin: const EdgeInsets.symmetric(vertical: 9),
-                          height: 6,
-                          decoration: BoxDecoration(
-                            color: trackColor,
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                        ),
-                        FractionallySizedBox(
-                          widthFactor: segmentProgress,
-                          child: Container(
-                            margin: const EdgeInsets.symmetric(vertical: 9),
-                            height: 6,
-                            decoration: BoxDecoration(
-                              color: progressColor,
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  );
-                }
-              },
+  Widget _buildLineSegment(double progress) {
+    return Expanded(
+      child: Stack(
+        alignment: Alignment.center,
+        children: [
+          Container(
+            height: lineHeight,
+            decoration: BoxDecoration(
+              color: trackColor,
+              borderRadius: BorderRadius.circular(lineHeight),
             ),
-          );
-        },
+          ),
+          LayoutBuilder(
+            builder: (context, constraints) {
+              return Align(
+                alignment: Alignment.centerLeft,
+                child: AnimatedContainer(
+                  duration: animationDuration,
+                  curve: animationCurve,
+                  height: lineHeight,
+                  width: constraints.maxWidth * progress,
+                  decoration: BoxDecoration(
+                    color: progressColor,
+                    borderRadius: BorderRadius.circular(lineHeight),
+                  ),
+                ),
+              );
+            },
+          ),
+        ],
       ),
     );
   }
