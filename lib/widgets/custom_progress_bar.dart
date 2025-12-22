@@ -4,7 +4,7 @@ class CustomProgressBar extends StatelessWidget {
   final int currentPoints;
   final List<int> milestones;
   final Color progressColor;
-  final Color trackColor;
+  final Color? trackColor;
   final Widget? completedIcon;
   final Widget? pendingIcon;
 

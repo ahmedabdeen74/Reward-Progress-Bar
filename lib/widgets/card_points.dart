@@ -6,7 +6,7 @@ class CardPoints extends StatelessWidget {
   final int currentPoints;
   final List<int> milestones;
   final Color progressColor;
-  final Color trackColor;
+  final Color? trackColor;
   final Widget? completedIcon;
   final Widget? pendingIcon;
   const CardPoints({
@@ -14,7 +14,7 @@ class CardPoints extends StatelessWidget {
     required this.currentPoints,
     this.milestones = const [0, 10, 20, 30, 40],
     this.progressColor = Colors.blue,
-    required this.trackColor,
+    this.trackColor,
     this.completedIcon,
     this.pendingIcon,
   });
