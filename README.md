@@ -31,6 +31,8 @@ flutter pub get
 🚀 Usage
 Import the package:
 
+import 'package:reward_progress_bar/reward_progress_bar.dart';
+
 1. Basic Usage (Default Icons)
 The simplest way to use the package. It uses default check icons.
 CardPoints(

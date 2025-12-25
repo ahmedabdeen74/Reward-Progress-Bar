@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:reward_progress_bar/reward_progress_bar.dart';
 
-import 'reward_progress_bar.dart';
+
 
 void main() => runApp(const RewardShowcaseApp());
 
