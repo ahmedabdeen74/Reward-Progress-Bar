@@ -71,9 +71,18 @@ CardPoints(
 )
 
 
-## ⚙️ Properties
+| ⚙️ Property      | Type             | Default               | Description                                   |
+| ---------------- | ---------------- | --------------------- | --------------------------------------------- |
+| `currentPoints`  | `int`            | Required              | The current value of progress                 |
+| `milestones`     | `List<int>`      | `[0, 10, 20, 30, 40]` | List of values representing each milestone    |
+| `labels`         | `List<String>?`  | null                  | Optional text to display under each milestone |
+| `progressColor`  | `Color`          | `Colors.blue`         | Color of the active progress line             |
+| `trackColor`     | `Color?`         | null                  | Color of the inactive background line         |
+| `completedIcon`  | `Widget?`        | null                  | Widget displayed for reached milestones       |
+| `pendingIcon`    | `Widget?`        | null                  | Widget displayed for unreached milestones     |
+| `iconSize`       | `double`         | 24.0                  | Size of the milestone icons                   |
+| `onMilestoneTap` | `Function(int)?` | null                  | Callback when a milestone is tapped           |
 
-![Properties Table](assets/screenshots/table.png)
 
 
 🤝 Contributing
