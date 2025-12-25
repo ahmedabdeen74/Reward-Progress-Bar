@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:reward_progress_bar/reward_progress_bar.dart';
-
 
 class CardPoints extends StatelessWidget {
   final int currentPoints;
@@ -32,11 +30,11 @@ class CardPoints extends StatelessWidget {
     return CustomProgressBar(
       onMilestoneTap: onMilestoneTap,
       iconSize: iconSize,
-      completedIcon: completedIcon ?? 
+      completedIcon: completedIcon ??
           Icon(Icons.check_circle, color: Colors.green, size: iconSize),
-      pendingIcon: pendingIcon ?? 
-          Icon(Icons.circle_outlined, color: trackColor ?? const Color(0xFFE0E0E0), size: iconSize),
-      
+      pendingIcon: pendingIcon ??
+          Icon(Icons.circle_outlined,
+              color: trackColor ?? const Color(0xFFE0E0E0), size: iconSize),
       currentPoints: currentPoints,
       trackColor: trackColor ?? const Color(0xFFE0E0E0),
       milestones: milestones,

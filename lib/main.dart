@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:reward_progress_bar/reward_progress_bar.dart';
 
-
-
 void main() => runApp(const RewardShowcaseApp());
 
 class RewardShowcaseApp extends StatelessWidget {
@@ -99,7 +97,7 @@ class _ShowcaseScreenState extends State<ShowcaseScreen> {
                   milestones: const [0, 40, 80, 120],
                   labels: const ["Rookie", "Elite", "Master", "Legend"],
                   progressColor: Colors.amber,
-                  trackColor: Colors.amber.withOpacity(0.2),
+                  trackColor: Colors.amber.withValues(alpha: 0.2),
                   // استخدام أيقونات فلاتر الجاهزة
                   completedIcon: const Icon(
                     Icons.star,
@@ -183,16 +181,16 @@ class _ShowcaseScreenState extends State<ShowcaseScreen> {
         decoration: BoxDecoration(
           color: Colors.black87,
           borderRadius: BorderRadius.circular(30),
-          boxShadow: [
+          boxShadow: const[
             BoxShadow(
               color: Colors.black26,
               blurRadius: 6,
-              offset: const Offset(0, 3),
+              offset:  Offset(0, 3),
             ),
           ],
         ),
         child: Row(
-          mainAxisSize: MainAxisSize.min, 
+          mainAxisSize: MainAxisSize.min,
           children: [
             IconButton(
               onPressed: () => setState(() => currentPoints = 0),
@@ -205,20 +203,18 @@ class _ShowcaseScreenState extends State<ShowcaseScreen> {
               padding: EdgeInsets.zero,
               constraints: const BoxConstraints(),
             ),
-
             const SizedBox(width: 15),
             Text(
               "Pts: $currentPoints",
               style: const TextStyle(
                 color: Colors.white,
                 fontWeight: FontWeight.bold,
-                fontSize: 14, // تصغير الخط
+                fontSize: 14,
               ),
             ),
-
             const SizedBox(width: 15),
             SizedBox(
-              width: 35, 
+              width: 35,
               height: 35,
               child: FloatingActionButton(
                 backgroundColor: Colors.white,
@@ -250,7 +246,6 @@ class _ShowcaseScreenState extends State<ShowcaseScreen> {
     );
   }
 }
-
 
 class _ShowcaseCard extends StatelessWidget {
   final Widget child;

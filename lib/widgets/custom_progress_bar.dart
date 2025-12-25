@@ -86,7 +86,7 @@ class CustomProgressBar extends StatelessWidget {
                 onTap: () => onMilestoneTap?.call(index),
                 child: SizedBox(
                   width: iconSize,
-                  height: 30, 
+                  height: 30,
                   child: OverflowBox(
                     maxWidth: iconSize * 3,
                     maxHeight: 30,
