@@ -81,6 +81,7 @@ CardPoints(
 | `completedIcon`  | `Widget?`        | null                  | Widget displayed for reached milestones       |
 | `pendingIcon`    | `Widget?`        | null                  | Widget displayed for unreached milestones     |
 | `iconSize`       | `double`         | 24.0                  | Size of the milestone icons                   |
+| `lineHeight`     | ``double?``      | null                  | Thickness of the connecting lines             |
 | `onMilestoneTap` | `Function(int)?` | null                  | Callback when a milestone is tapped           |
 
 
