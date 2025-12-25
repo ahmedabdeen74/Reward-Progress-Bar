@@ -6,7 +6,7 @@ This package allows you to create milestone-based progress bars where lines do n
 
 ## 🎥 Preview
 
-![Reward Progress Bar Demo](PLACE_YOUR_GIF_LINK_HERE)
+![Reward Progress Bar Demo](assets/screenshots/demo.gif)
 ## ✨ Features
 
 * **🚀 Animated Progress:** Smooth transitions when updating points.
@@ -69,9 +69,9 @@ CardPoints(
 )
 
 
-⚙️ Properties
+## ⚙️ Properties
 
-// photo of table
+![Properties Table](assets/screenshots/table.png)
 
 
 🤝 Contributing
