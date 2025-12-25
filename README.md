@@ -6,7 +6,7 @@ This package allows you to create milestone-based progress bars where lines do n
 
 ## 🎥 Preview
 
-![Reward Progress Bar Demo](https://github.com/ahmedabdeen74/Progress-Bar-/blob/main/assets/screenshots/demo.gif?raw=true)
+![Reward Progress Bar Demo](https://github.com/ahmedabdeen74/Progress-Bar-/blob/master/assets/screenshots/demo.gif?raw=true)
 ## ✨ Features
 
 * **🚀 Animated Progress:** Smooth transitions when updating points.
