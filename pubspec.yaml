@@ -1,9 +1,9 @@
 name: reward_progress_bar
 description: A highly customizable, animated progress bar widget for Flutter. Perfect for gamification, loyalty programs, and order tracking.
 version: 0.0.5
-homepage: https://github.com/ahmedabdeen74/Progress-Bar-
-repository: https://github.com/ahmedabdeen74/Progress-Bar-
-issue_tracker: https://github.com/ahmedabdeen74/Progress-Bar-/issues
+homepage: https://github.com/ahmedabdeen74/Reward-Progress-Bar
+repository: https://github.com/ahmedabdeen74/Reward-Progress-Bar
+issue_tracker: https://github.com/ahmedabdeen74/Reward-Progress-Bar/issues
 
 environment:
   sdk: '>=3.0.0 <4.0.0'

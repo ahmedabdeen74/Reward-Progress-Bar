@@ -1,0 +1,15 @@
+name: reward_progress_bar_example
+description: Example app for reward_progress_bar
+publish_to: none
+
+environment:
+  sdk: ">=3.0.0 <4.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  reward_progress_bar:
+    path: ../   
+
+flutter:
+  uses-material-design: true

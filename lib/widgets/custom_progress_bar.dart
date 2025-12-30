@@ -1,20 +1,50 @@
 import 'package:flutter/material.dart';
 
+/// Internal widget that draws the progress bar and milestone icons.
 class CustomProgressBar extends StatelessWidget {
+  /// The current progress value.
   final int currentPoints;
+
+  /// The milestone values list.
   final List<int> milestones;
+
+  /// Optional labels under each milestone.
   final List<String>? labels;
+
+  /// Color of the completed progress line.
   final Color progressColor;
+
+  /// Color of the remaining track line.
   final Color trackColor;
+
+  /// Widget displayed for completed milestones.
   final Widget? completedIcon;
+
+  /// Widget displayed for pending milestones.
   final Widget? pendingIcon;
+
+  /// Size of milestone icons.
   final double iconSize;
+
+  /// Height/thickness of the connecting lines.
   final double lineHeight;
+
+  /// Animation duration for the progress line.
   final Duration animationDuration;
+
+  /// Animation curve for the progress line.
   final Curve animationCurve;
+
+  /// TextStyle for milestone labels.
   final TextStyle? labelStyle;
+
+  /// Callback when a milestone is tapped.
   final Function(int index)? onMilestoneTap;
 
+  /// Creates a [CustomProgressBar] widget.
+  ///
+  /// [milestones] must have at least 2 values.
+  /// [labels] length must match [milestones] if provided.
   const CustomProgressBar({
     super.key,
     required this.currentPoints,
@@ -110,6 +140,7 @@ class CustomProgressBar extends StatelessWidget {
     );
   }
 
+  /// Builds the milestone icon.
   Widget _buildIcon(bool isCompleted) {
     return Container(
       width: iconSize,
@@ -123,6 +154,7 @@ class CustomProgressBar extends StatelessWidget {
     );
   }
 
+  /// Builds a line segment between two milestones.
   Widget _buildLineSegment(double progress) {
     return Expanded(
       child: SizedBox(
